@@ -189,8 +189,9 @@
       ]
     }
   ],
-  "workbench.colorTheme": "Gruvbox Dark Hard",
   "workbench.editor.enablePreview": false,
   "workbench.startupEditor": "none",
-  "python.analysis.typeCheckingMode": "strict"
+  "python.analysis.typeCheckingMode": "strict",
+  "workbench.colorTheme": "Gruvbox Dark (Medium)",
+  "claudeCode.preferredLocation": "sidebar"
 }
