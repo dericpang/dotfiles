@@ -9,6 +9,7 @@ export LSCOLORS=ExExExExExEgedabagacad
 zstyle ':completion:*' list-colors ${(s.:.)LSCOLORS}
 
 export PATH=$HOME/bin:$PATH
+eval "$(/opt/homebrew/bin/brew shellenv)"
 export PATH=$HOME/.local/bin:$PATH
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
