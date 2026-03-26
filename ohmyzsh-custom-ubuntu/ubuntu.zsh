@@ -8,7 +8,10 @@ export CLICOLOR=1
 export LSCOLORS=ExExExExExEgedabagacad
 zstyle ':completion:*' list-colors ${(s.:.)LSCOLORS}
 
-export PATH=$HOME/bin:$PATH
+export PATH=/usr/local/cuda/bin:$HOME/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+
+eval "$(/home/deric/.local/bin/mise activate zsh)"
 
 # History settings.
 export HISTFILE=~/.bash_history
