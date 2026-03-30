@@ -193,5 +193,9 @@
   "workbench.startupEditor": "none",
   "python.analysis.typeCheckingMode": "strict",
   "workbench.colorTheme": "Gruvbox Dark Hard",
-  "claudeCode.preferredLocation": "sidebar"
+  "claudeCode.preferredLocation": "sidebar",
+  "remote.SSH.remotePlatform": {
+    "100.76.2.45": "linux"
+  },
+  "workbench.activityBar.orientation": "vertical"
 }
