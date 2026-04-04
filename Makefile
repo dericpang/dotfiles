@@ -19,7 +19,7 @@ googlemacos:
 googlelinux:
 	cd google-dotfiles && make linux
 
-macos: shared git vscode cursor
+macos: shared git vscode
 	@ln -nfs "${pwd}/alacritty" "$(HOME)/.config/alacritty"
 	@ln -nfs "${pwd}/zshrc.macos" "$(HOME)/.zshrc"
 	@ln -nfs "${pwd}/bashrc.macos" "$(HOME)/.bashrc"
