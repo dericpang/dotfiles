@@ -2,23 +2,6 @@ pwd := $(shell pwd -LP)
 
 .PHONY: macos ubuntu vim nvim git shared vscode cursor
 
-figmamacos: shared
-	@ln -nfs "${pwd}/alacritty" "$(HOME)/.config/alacritty"
-	@ln -nfs "${pwd}/zshrc.macos" "$(HOME)/.zshrc"
-	@ln -nfs "${pwd}/bashrc.macos" "$(HOME)/.bashrc"
-	cd figma-dotfiles && make macos
-
-figmalinux: shared
-	@ln -nfs "${pwd}/bashrc.ubuntu" "$(HOME)/.bashrc"
-	@ln -nfs "${pwd}/zshrc.ubuntu" "$(HOME)/.zshrc"
-	cd figma-dotfiles && make linux
-
-googlemacos:
-	cd google-dotfiles && make macos
-
-googlelinux:
-	cd google-dotfiles && make linux
-
 macos: shared git vscode
 	@ln -nfs "${pwd}/alacritty" "$(HOME)/.config/alacritty"
 	@ln -nfs "${pwd}/zshrc.macos" "$(HOME)/.zshrc"
