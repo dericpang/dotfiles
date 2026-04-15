@@ -2,8 +2,10 @@
   name = Deric Pang
   email = deric@dericpang.com
 [core]
-  editor = nvim
+  editor = vim
 [pager]
 	branch = false
 [push]
     autoSetupRemote = true
+[includeIf "gitdir:~/architect-chips/"]
+  path = ~/.gitconfig-architect

@@ -2,12 +2,12 @@ pwd := $(shell pwd -LP)
 
 .PHONY: macos ubuntu vim nvim git shared vscode cursor
 
-macos: shared git vscode
+macos: shared vscode
 	@ln -nfs "${pwd}/alacritty" "$(HOME)/.config/alacritty"
 	@ln -nfs "${pwd}/zshrc.macos" "$(HOME)/.zshrc"
 	@ln -nfs "${pwd}/bashrc.macos" "$(HOME)/.bashrc"
 
-ubuntu: shared git
+ubuntu: shared
 	@ln -nfs "${pwd}/zshrc.ubuntu" "$(HOME)/.zshrc"
 	@ln -nfs "${pwd}/bashrc.ubuntu" "$(HOME)/.bashrc"
 
@@ -27,8 +27,9 @@ cursor:
 
 git:
 	@ln -nfs "${pwd}/gitconfig" "$(HOME)/.gitconfig"
+	@ln -nfs "${pwd}/gitconfig-architect" "$(HOME)/.gitconfig-architect"
 
-shared: vim nvim
+shared: vim nvim git
 	@ln -nfs "${pwd}/bin" "$(HOME)/bin"
 	@ln -nfs "${pwd}/tmux.conf" "$(HOME)/.tmux.conf"
 	@if [ ! -d "$(HOME)/.config/ranger" ]; then mkdir -p "$(HOME)/.config/ranger"; fi && ln -nfs "${pwd}/rc.config" "$(HOME)/.config/ranger/rc.conf"
