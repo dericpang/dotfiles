@@ -205,9 +205,13 @@
   "workbench.colorTheme": "Gruvbox Dark Hard",
   "claudeCode.preferredLocation": "panel",
   "remote.SSH.remotePlatform": {
-    "deric-dev": "linux"
+    "deric-dev": "linux",
+    "deric-dev-2": "linux"
   },
   "lean4.alwaysAskBeforeInstallingLeanVersions": true,
   "files.insertFinalNewline": true,
-  "workbench.activityBar.location": "top"
+  "workbench.activityBar.location": "top",
+  "remote.autoForwardPortsSource": "hybrid",
+  "cursor.composer.shouldChimeAfterChatFinishes": true,
+  "cursor.general.glassShowWarningNotifications": true
 }
