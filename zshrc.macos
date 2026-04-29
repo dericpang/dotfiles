@@ -70,7 +70,7 @@ ZSH_CUSTOM=~/dotfiles/ohmyzsh-custom-macos
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git fzf dotenv python nvm)
+plugins=(git fzf dotenv python nvm virtualenv)
 
 export PYTHON_AUTO_VRUN=true
 

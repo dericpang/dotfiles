@@ -1,5 +1,4 @@
 {
-  "editor.fontFamily": "JetBrainsMono Nerd Font",
   "editor.fontSize": 14,
   "editor.rulers": [
     80,
@@ -10,7 +9,6 @@
   "githubPullRequests.pullBranch": "never",
   "terminal.integrated.defaultProfile.linux": "zsh",
   "terminal.integrated.defaultProfile.osx": "zsh",
-  "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font",
   "terminal.integrated.fontSize": 14,
   "vim.commandLineModeKeyBindingsNonRecursive": [
     {
@@ -202,7 +200,6 @@
   "workbench.editor.enablePreview": false,
   "workbench.startupEditor": "none",
   "python.analysis.typeCheckingMode": "strict",
-  "python.terminal.activateEnvironment": false,
   "workbench.colorTheme": "Gruvbox Dark Hard",
   "claudeCode.preferredLocation": "panel",
   "remote.SSH.remotePlatform": {
