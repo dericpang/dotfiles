@@ -71,7 +71,6 @@ ZSH_CUSTOM=~/dotfiles/ohmyzsh-custom-macos
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git fzf dotenv python nvm)
-zstyle ':omz:plugins:nvm' autoload true
 
 source $ZSH/oh-my-zsh.sh
 
