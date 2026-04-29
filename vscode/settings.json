@@ -202,6 +202,7 @@
   "workbench.editor.enablePreview": false,
   "workbench.startupEditor": "none",
   "python.analysis.typeCheckingMode": "strict",
+  "python.terminal.activateEnvironment": false,
   "workbench.colorTheme": "Gruvbox Dark Hard",
   "claudeCode.preferredLocation": "panel",
   "remote.SSH.remotePlatform": {
