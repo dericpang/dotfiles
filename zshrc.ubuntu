@@ -72,6 +72,8 @@ ZSH_CUSTOM=~/dotfiles/ohmyzsh-custom-ubuntu
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git fzf dotenv python nvm)
 
+export PYTHON_AUTO_VRUN=true
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
