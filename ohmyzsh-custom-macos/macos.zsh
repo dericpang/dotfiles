@@ -41,3 +41,5 @@ start() {
   tmux new-session -d -s deric-dev-2 2>/dev/null || true
   tmux new-session -A -s main
 }
+
+nvm use default --silent
