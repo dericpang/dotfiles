@@ -36,9 +36,9 @@ setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 # `main` session if it exists.
 main() { tmux new-session -A -s ${1:-main} }
 
-# Opens (or attaches to) the deric-dev-2 and main tmux sessions.
+# Opens (or attaches to) the dev and main tmux sessions.
 start() {
-  tmux new-session -d -s deric-dev-2 2>/dev/null || true
+  tmux new-session -d -s dev 2>/dev/null || true
   tmux new-session -A -s main
 }
 
