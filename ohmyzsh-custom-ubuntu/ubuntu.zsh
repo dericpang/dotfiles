@@ -13,6 +13,13 @@ export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 
 eval "$(/home/deric/.local/bin/mise activate zsh)"
 
+# bun completions
+[ -s "/home/deric/.bun/_bun" ] && source "/home/deric/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
 # History settings.
 export HISTFILE=~/.bash_history
 export HISTSIZE=1000000000       # Load most recent 1,000,000,000 lines

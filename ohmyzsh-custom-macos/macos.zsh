@@ -10,7 +10,11 @@ zstyle ':completion:*' list-colors ${(s.:.)LSCOLORS}
 
 export PATH=$HOME/bin:$PATH
 eval "$(/opt/homebrew/bin/brew shellenv)"
-export PATH=$HOME/.local/bin:$PATH
+
+# bun completions
+[ -s "/home/deric/.bun/_bun" ] && source "/home/deric/.bun/_bun"
+
+# bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
