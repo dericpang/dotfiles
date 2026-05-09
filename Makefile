@@ -2,7 +2,7 @@ pwd := $(shell pwd -LP)
 
 .PHONY: macos ubuntu vim nvim git shared vscode cursor
 
-macos: shared vscode
+macos: shared vscode cursor
 	@ln -nfs "${pwd}/alacritty" "$(HOME)/.config/alacritty"
 	@ln -nfs "${pwd}/zshrc.macos" "$(HOME)/.zshrc"
 	@ln -nfs "${pwd}/bashrc.macos" "$(HOME)/.bashrc"
