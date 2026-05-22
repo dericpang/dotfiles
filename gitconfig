@@ -1,11 +1,13 @@
 [user]
   name = Deric Pang
-  email = deric@dericpang.com
+  email = deric@nullprior.com
 [core]
   editor = vim
 [pager]
 	branch = false
 [push]
     autoSetupRemote = true
+[includeIf "gitdir:~/nullprior/"]
+  path = ~/.gitconfig-nullprior
 [includeIf "gitdir:~/architect-chips/"]
   path = ~/.gitconfig-architect

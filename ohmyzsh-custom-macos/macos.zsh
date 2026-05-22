@@ -11,6 +11,9 @@ zstyle ':completion:*' list-colors ${(s.:.)LSCOLORS}
 export PATH=$HOME/bin:$PATH
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
+# LM Studio
+export PATH="$PATH:/Users/deric/.lmstudio/bin"
+
 # bun completions
 [ -s "/home/deric/.bun/_bun" ] && source "/home/deric/.bun/_bun"
 
