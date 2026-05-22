@@ -95,8 +95,3 @@ function parse_git_dirty {
 }
 
 export PS1="\[\e[32m\]\u\[\e[m\]\[\e[90m\]@\[\e[m\]\[\e[92m\]\h\[\e[m\]\[\e[90m\]:\[\e[m\]\[\e[34m\]\w\[\e[m\]\[\e[31m\] \`nonzero_return\`\[\e[m\]\[\e[95m\]\`parse_git_branch\`\[\e[m\] \n\[\e[35m\]>\[\e[m\] "
-
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/deric/.lmstudio/bin"
-# End of LM Studio CLI section
-
