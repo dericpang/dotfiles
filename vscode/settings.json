@@ -205,12 +205,24 @@
   "claudeCode.preferredLocation": "panel",
   "remote.SSH.remotePlatform": {
     "deric-dev": "linux",
-    "deric-dev-2": "linux"
+    "deric-dev-west": "linux",
+    "deric-dev-west-2": "linux"
   },
   "lean4.alwaysAskBeforeInstallingLeanVersions": true,
   "files.insertFinalNewline": true,
   "workbench.activityBar.location": "top",
   "remote.autoForwardPortsSource": "hybrid",
   "cursor.composer.shouldChimeAfterChatFinishes": true,
-  "cursor.general.glassShowWarningNotifications": true
+  "cursor.general.glassShowWarningNotifications": true,
+  "files.watcherExclude": {
+    "**/node_modules/**": true,
+    "**/.venv/**": true,
+    "**/.git/**": true,
+    "**/dist/**": true,
+    "**/build/**": true,
+    "**/__pycache__/**": true,
+    "**/ml/eval_runs/**": true,
+    "**/ml/third_party/**": true
+  },
+  "workbench.preferredDarkColorTheme": "Gruvbox Dark Hard",
 }
