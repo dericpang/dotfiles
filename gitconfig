@@ -9,6 +9,8 @@
     autoSetupRemote = true
 [includeIf "gitdir:~/dericpang/"]
   path = ~/.gitconfig-dericpang
+[includeIf "gitdir:~/dotfiles/"]
+  path = ~/.gitconfig-dericpang
 [includeIf "gitdir:~/nullprior/"]
   path = ~/.gitconfig-nullprior
 [includeIf "gitdir:~/architect-chips/"]
