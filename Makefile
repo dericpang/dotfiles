@@ -1,6 +1,6 @@
 pwd := $(shell pwd -LP)
 
-.PHONY: macos ubuntu vim nvim git shared vscode cursor
+.PHONY: macos ubuntu vim nvim git ssh shared vscode cursor
 
 macos: shared vscode cursor
 	@ln -nfs "${pwd}/alacritty" "$(HOME)/.config/alacritty"
@@ -25,9 +25,16 @@ cursor:
 	@ln -nfs "${pwd}/vscode/settings.json" "$(HOME)/Library/Application Support/Cursor/User/settings.json"
 	@ln -nfs "${pwd}/vscode/keybindings.json" "$(HOME)/Library/Application Support/Cursor/User/keybindings.json"
 
-git:
+git: ssh
 	@ln -nfs "${pwd}/gitconfig" "$(HOME)/.gitconfig"
 	@ln -nfs "${pwd}/gitconfig-architect" "$(HOME)/.gitconfig-architect"
+	@ln -nfs "${pwd}/gitconfig-nullprior" "$(HOME)/.gitconfig-nullprior"
+	@ln -nfs "${pwd}/gitconfig-dericpang" "$(HOME)/.gitconfig-dericpang"
+
+ssh:
+	@mkdir -p "$(HOME)/.ssh"
+	@ln -nfs "${pwd}/ssh/jisoo.pub" "$(HOME)/.ssh/jisoo.pub"
+	@ln -nfs "${pwd}/ssh/deric-architect.pub" "$(HOME)/.ssh/deric-architect.pub"
 
 shared: vim nvim git
 	@ln -nfs "${pwd}/bin" "$(HOME)/bin"

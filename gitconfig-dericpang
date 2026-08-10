@@ -1,5 +1,4 @@
 [user]
   name = Deric Pang
-  email = deric@nullprior.com
 [core]
   sshCommand = ssh -i ~/.ssh/jisoo.pub -o IdentitiesOnly=yes

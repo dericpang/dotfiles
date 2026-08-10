@@ -1,4 +1,5 @@
 [user]
   name = Deric Pang
   email = deric@architectchips.com
-  
+[core]
+  sshCommand = ssh -i ~/.ssh/deric-architect.pub -o IdentitiesOnly=yes
