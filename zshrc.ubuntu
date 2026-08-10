@@ -101,3 +101,18 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# --- Per-directory Graphite account selection ---------------------------------
+# `gt` reads its auth token from $XDG_CONFIG_HOME/graphite. Some repos need to
+# submit PRs as a different Graphite account, so point gt at a per-account config
+# dir based on the current directory. Only the gt subprocess is affected; other
+# XDG-aware tools are untouched. Tokens live in each dir's `auth` file (secret,
+# not tracked in dotfiles). Set a token with: cd <repo> && gt auth --token <tok>
+gt() {
+  local xdg="${XDG_CONFIG_HOME:-$HOME/.config}"   # default account -> ~/.config/graphite
+  case "$PWD/" in
+    "$HOME"/dericpang/*|"$HOME"/dotfiles/*|"$HOME"/nullprior/*)
+      xdg="$HOME/.graphite-envs/dericpang" ;;      # -> ~/.graphite-envs/dericpang/graphite
+  esac
+  XDG_CONFIG_HOME="$xdg" command gt "$@"
+}
