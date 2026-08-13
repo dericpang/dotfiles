@@ -206,7 +206,8 @@
   "remote.SSH.remotePlatform": {
     "deric-dev": "linux",
     "deric-dev-west": "linux",
-    "deric-dev-west-2": "linux"
+    "deric-dev-west-2": "linux",
+    "redwood-general": "linux"
   },
   "lean4.alwaysAskBeforeInstallingLeanVersions": true,
   "files.insertFinalNewline": true,

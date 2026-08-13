@@ -49,7 +49,7 @@ if mountpoint -q /mnt/hw; then
     source /usr/share/lmod/lmod/init/bash
     module purge
     module use /mnt/hw/tools/modulefiles
-    module load anvil vcs verdi vcs_gnu verilator peakrdl bender
+    module load anvil vcs verdi vcs_gnu verilator peakrdl bender scc_vcs/v2-sysc301
 
     # PeakRDL's module leaks a py3.10 site-dir onto PYTHONPATH that shadows
     # project venvs (py3.12). Scope it to the peakrdl command instead.
