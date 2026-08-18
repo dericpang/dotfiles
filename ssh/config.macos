@@ -1,0 +1,35 @@
+Host *
+	IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+
+Host deric-dev
+  HostName 100.111.29.85
+  ForwardAgent yes
+
+Host deric-dev-east
+  HostName 100.115.30.82
+  ForwardAgent yes
+
+Host deric-dev-west
+  HostName 100.73.223.100
+  ForwardAgent yes
+
+Host deric-dev-west-2
+  HostName 100.93.194.13
+  ForwardAgent yes
+
+Host eval-server
+  HostName 100.70.204.33
+  ForwardAgent yes
+
+Host redwood-general
+  HostName 34.66.185.184
+  ForwardAgent yes
+
+Host minji
+  HostName 100.66.9.12
+  ForwardAgent yes
+
+Host rose
+  HostName 100.119.67.104
+  ForwardAgent yes
+

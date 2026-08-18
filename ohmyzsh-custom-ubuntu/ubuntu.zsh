@@ -38,6 +38,17 @@ setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording en
 setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
 setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 
+# A forwarded SSH agent socket dies with the connection that created it, so
+# panes in a long-lived tmux session end up pointing at a dead socket and lose
+# agent auth (git push, and anything an agent running in there shells out to).
+# Point every shell at one stable path instead, and re-aim that path whenever a
+# fresh connection brings in a live socket. Panes that predate this need
+# `export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock` once; after that they self-heal.
+if [[ -S $SSH_AUTH_SOCK && $SSH_AUTH_SOCK != $HOME/.ssh/ssh_auth_sock ]]; then
+  ln -sf "$SSH_AUTH_SOCK" "$HOME/.ssh/ssh_auth_sock"
+fi
+[[ -L $HOME/.ssh/ssh_auth_sock ]] && export SSH_AUTH_SOCK="$HOME/.ssh/ssh_auth_sock"
+
 # Function that creates a new tmux session named `main` or attaches to the
 # `main` session if it exists.
 main() { tmux new-session -A -s ${1:-main} }

@@ -1,8 +1,8 @@
 pwd := $(shell pwd -LP)
 
-.PHONY: macos ubuntu vim nvim git ssh graphite shared vscode cursor
+.PHONY: macos ubuntu vim nvim git ssh ssh-config graphite shared vscode cursor
 
-macos: shared vscode cursor
+macos: shared vscode cursor ssh-config
 	@ln -nfs "${pwd}/alacritty" "$(HOME)/.config/alacritty"
 	@ln -nfs "${pwd}/zshrc.macos" "$(HOME)/.zshrc"
 	@ln -nfs "${pwd}/bashrc.macos" "$(HOME)/.bashrc"
@@ -35,6 +35,12 @@ ssh:
 	@mkdir -p "$(HOME)/.ssh"
 	@ln -nfs "${pwd}/ssh/jisoo.pub" "$(HOME)/.ssh/jisoo.pub"
 	@ln -nfs "${pwd}/ssh/deric-architect.pub" "$(HOME)/.ssh/deric-architect.pub"
+
+# macOS only: the config points IdentityAgent at the 1Password agent socket,
+# which doesn't exist on the Linux boxes. Linking it there would override the
+# forwarded SSH_AUTH_SOCK and break agent auth, so this stays out of `ssh`.
+ssh-config: ssh
+	@ln -nfs "${pwd}/ssh/config.macos" "$(HOME)/.ssh/config"
 
 # Scaffolds an alternate Graphite config dir (for the dericpang account). The gt
 # wrapper in zshrc points here when inside ~/dericpang, ~/dotfiles, ~/nullprior.
