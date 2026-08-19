@@ -108,11 +108,15 @@ source $ZSH/oh-my-zsh.sh
 # dir based on the current directory. Only the gt subprocess is affected; other
 # XDG-aware tools are untouched. Tokens live in each dir's `auth` file (secret,
 # not tracked in dotfiles). Set a token with: cd <repo> && gt auth --token <tok>
+# Only switches when that account actually has a token on this machine. The dev
+# boxes never got one, and switching there just breaks gt with an auth error --
+# falling back to the default account is the useful behavior.
 gt() {
   local xdg="${XDG_CONFIG_HOME:-$HOME/.config}"   # default account -> ~/.config/graphite
   case "$PWD/" in
     "$HOME"/dericpang/*|"$HOME"/dotfiles/*|"$HOME"/nullprior/*)
-      xdg="$HOME/.graphite-envs/dericpang" ;;      # -> ~/.graphite-envs/dericpang/graphite
+      [ -f "$HOME/.graphite-envs/dericpang/graphite/auth" ] &&
+        xdg="$HOME/.graphite-envs/dericpang" ;;   # -> ~/.graphite-envs/dericpang/graphite
   esac
   XDG_CONFIG_HOME="$xdg" command gt "$@"
 }
