@@ -4,10 +4,16 @@ ALIVE_INTERVAL=10 # How long to keep the SSH session alive.
 HOSTNAME="$1" # The hostname is passed as the first argument.
 TMUX_SESSION="$2" # The tmux session name is passed as the second argument.
 SSH_OPTS="-oCompression=yes -oCheckHostIP=no -oServerAliveInterval=$ALIVE_INTERVAL"
-TMUX_CMD="tmux new-session -A -s"
+
+# Re-point the stable agent socket at this connection's forwarded one before
+# attaching. Reconnecting runs this as a remote command, which never sources
+# ~/.zshrc, and attaching to an existing session spawns no new shell -- so
+# nothing else would refresh the socket for panes that are already running.
+# Single-quoted: $SSH_AUTH_SOCK must expand on the remote, not here.
+TMUX_CMD='[ -S "$SSH_AUTH_SOCK" ] && ln -sf "$SSH_AUTH_SOCK" "$HOME/.ssh/ssh_auth_sock"; exec tmux new-session -A -s'
 
 if [ -z "$HOSTNAME" ] ; then
-  echo "Usage: $0 <HOSTNAME>"
+  echo "Usage: $0 <HOSTNAME> [TMUX_SESSION]"
   exit 1
 fi
 
@@ -16,13 +22,22 @@ if [ -z "$TMUX_SESSION"  ] ; then
   TMUX_SESSION="main"
 fi
 
-# Attempt to keep reconnect upon failure.
-while [ 1 ]; do
-  ssh -t $HOSTNAME $SSH_OPTS "$TMUX_CMD" "$TMUX_SESSION"
+# Ctrl-C while waiting to reconnect should quit, not loop around again.
+trap 'exit 130' INT
 
-  # Don't reconnect if disconnection not due to error (i.e., user detached)
-  if [ $? -eq 0 ]; then break; fi
+# Attempt to keep reconnect upon failure.
+while true; do
+  # $SSH_OPTS is intentionally unquoted so it splits into separate arguments.
+  ssh -t "$HOSTNAME" $SSH_OPTS "$TMUX_CMD" "$TMUX_SESSION"
+  RC=$?
+
+  # Only a transport failure (255) means the connection actually dropped.
+  # Anything else -- a clean detach, or tmux itself refusing to start -- is
+  # terminal, so don't spin on it.
+  [ $RC -eq 255 ] || break
 
   echo "SSH connection lost, reconnecting in $SLEEP_TIME seconds..."
   sleep $SLEEP_TIME
 done
+
+exit $RC
