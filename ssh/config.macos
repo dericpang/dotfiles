@@ -6,7 +6,7 @@ Host deric-dev
   ForwardAgent yes
 
 Host deric-dev-east
-  HostName 100.115.30.82
+  HostName 100.98.119.119
   ForwardAgent yes
 
 Host deric-dev-west

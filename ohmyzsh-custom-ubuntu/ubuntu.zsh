@@ -54,21 +54,3 @@ fi
 main() { tmux new-session -A -s ${1:-main} }
 
 nvm use default --silent
-
-# anvil
-if mountpoint -q /mnt/hw; then
-    source /usr/share/lmod/lmod/init/bash
-    module purge
-    module use /mnt/hw/tools/modulefiles
-    module load anvil vcs verdi vcs_gnu verilator peakrdl bender scc_vcs/v2-sysc301
-
-    # PeakRDL's module leaks a py3.10 site-dir onto PYTHONPATH that shadows
-    # project venvs (py3.12). Scope it to the peakrdl command instead.
-    _PEAKRDL_PP="/mnt/hw/tools/peakrdl/local/lib/python3.10/dist-packages"
-    _clean="$(printf '%s' "$PYTHONPATH" | tr ':' '\n' | grep -vxF "$_PEAKRDL_PP" | paste -sd: -)"
-    [ -n "$_clean" ] && export PYTHONPATH="$_clean" || unset PYTHONPATH
-    peakrdl() { PYTHONPATH="$_PEAKRDL_PP${PYTHONPATH:+:$PYTHONPATH}" command peakrdl "$@"; }
-
-    export LIBRARY_PATH=/usr/lib/x86_64-linux-gnu
-    export COMPILER_PATH=/usr/bin
-fi
