@@ -54,3 +54,23 @@ fi
 main() { tmux new-session -A -s ${1:-main} }
 
 nvm use default --silent
+
+# >>> hw-tools modules >>>
+# lmod defines the `module` function from /etc/profile.d, which bash only
+# sources for LOGIN shells. Source it explicitly so `module` also exists in
+# plain interactive shells — and crucially BEFORE `module use` runs.
+if ! command -v module >/dev/null 2>&1; then
+  for _lmod_init in /etc/profile.d/lmod.sh /etc/profile.d/z00_lmod.sh \
+                    /usr/share/lmod/lmod/init/bash; do
+    if [ -f "$_lmod_init" ]; then . "$_lmod_init"; break; fi
+  done
+  unset _lmod_init
+fi
+command -v module >/dev/null 2>&1 && module use /mnt/hw/tools/modulefiles
+# redwood's src/lake/Bender.yml substitutes $VCS_HOME/etc/uvm-1.2 when bender
+# PARSES the manifest, before it selects a target — so bender aborts if the
+# variable is merely undefined. The verilator targets never read those UVM
+# sources, so any value works. STOPGAP: the real fix is to drop that reference
+# from Bender.yml; remove this line once that lands.
+: "${VCS_HOME:=/mnt/hw/tools/.no-vcs}"; export VCS_HOME
+# <<< hw-tools modules <<<

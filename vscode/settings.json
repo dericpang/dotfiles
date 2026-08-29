@@ -209,7 +209,8 @@
     "deric-dev-west-2": "linux",
     "redwood-general": "linux",
     "minji": "macOS",
-    "rose": "linux"
+    "rose": "linux",
+    "deric-dev-east": "linux"
   },
   "lean4.alwaysAskBeforeInstallingLeanVersions": true,
   "files.insertFinalNewline": true,
