@@ -1,10 +1,6 @@
 Host *
 	IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
 
-Host deric-dev
-  HostName 100.111.29.85
-  ForwardAgent yes
-
 Host deric-dev-east
   HostName 100.98.119.119
   ForwardAgent yes
