@@ -1,12 +1,14 @@
 Host *
 	IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
 
+Host architect-ml
+  HostName 100.76.109.126
+  ForwardAgent yes
+
 Host deric-dev-east
-  HostName 100.98.119.119
   ForwardAgent yes
 
 Host deric-dev-west
-  HostName 100.73.223.100
   ForwardAgent yes
 
 Host deric-dev-west-2
@@ -14,7 +16,6 @@ Host deric-dev-west-2
   ForwardAgent yes
 
 Host eval-server
-  HostName 100.70.204.33
   ForwardAgent yes
 
 Host redwood-general
@@ -22,10 +23,8 @@ Host redwood-general
   ForwardAgent yes
 
 Host minji
-  HostName 100.66.9.12
   ForwardAgent yes
 
 Host rose
-  HostName 100.119.67.104
   ForwardAgent yes
 
