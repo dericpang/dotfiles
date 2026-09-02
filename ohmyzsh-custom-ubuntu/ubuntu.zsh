@@ -66,7 +66,13 @@ if ! command -v module >/dev/null 2>&1; then
   done
   unset _lmod_init
 fi
-command -v module >/dev/null 2>&1 && module use /mnt/hw/tools/modulefiles
+if command -v module >/dev/null 2>&1 && [ -d /mnt/hw/tools/modulefiles ]; then
+  module use /mnt/hw/tools/modulefiles
+  # Default redwood toolchain. Non-fatal: a machine missing one of these must
+  # still get a working shell, so failures are swallowed rather than surfaced.
+  module load gcc/15.2.0 systemc verilator/5.046 peakrdl bender anvil \
+              scc_gcc arcmodel 2>/dev/null || true
+fi
 # redwood's src/lake/Bender.yml substitutes $VCS_HOME/etc/uvm-1.2 when bender
 # PARSES the manifest, before it selects a target — so bender aborts if the
 # variable is merely undefined. The verilator targets never read those UVM
