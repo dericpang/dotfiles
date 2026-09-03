@@ -8,14 +8,7 @@ Host architect-ml
 Host deric-dev-east
   ForwardAgent yes
 
-Host deric-dev-west
-  ForwardAgent yes
-
-Host deric-dev-west-2
-  HostName 100.93.194.13
-  ForwardAgent yes
-
-Host eval-server
+Host deric-train
   ForwardAgent yes
 
 Host redwood-general

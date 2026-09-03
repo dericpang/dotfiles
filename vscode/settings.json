@@ -208,7 +208,8 @@
     "architect-ml": "linux",
     "redwood-general": "linux",
     "minji": "macOS",
-    "rose": "linux"
+    "rose": "linux",
+    "deric-train": "linux"
   },
   "lean4.alwaysAskBeforeInstallingLeanVersions": true,
   "files.insertFinalNewline": true,
