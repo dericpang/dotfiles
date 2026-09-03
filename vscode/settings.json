@@ -204,13 +204,11 @@
   "workbench.colorTheme": "Gruvbox Dark Hard",
   "claudeCode.preferredLocation": "panel",
   "remote.SSH.remotePlatform": {
-    "deric-dev": "linux",
-    "deric-dev-west": "linux",
-    "deric-dev-west-2": "linux",
+    "deric-dev-east": "linux",
+    "architect-ml": "linux",
     "redwood-general": "linux",
     "minji": "macOS",
-    "rose": "linux",
-    "deric-dev-east": "linux"
+    "rose": "linux"
   },
   "lean4.alwaysAskBeforeInstallingLeanVersions": true,
   "files.insertFinalNewline": true,
@@ -228,5 +226,5 @@
     "**/ml/eval_runs/**": true,
     "**/ml/third_party/**": true
   },
-  "workbench.preferredDarkColorTheme": "Gruvbox Dark Hard",
+  "workbench.preferredDarkColorTheme": "Gruvbox Dark Hard"
 }

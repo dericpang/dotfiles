@@ -14,6 +14,9 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # LM Studio
 export PATH="$PATH:/Users/deric/.lmstudio/bin"
 
+# Claude code
+export PATH="$HOME/.local/bin:$PATH"
+
 # bun completions
 [ -s "/home/deric/.bun/_bun" ] && source "/home/deric/.bun/_bun"
 
