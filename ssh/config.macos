@@ -2,7 +2,9 @@ Host *
 	IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
 
 Host architect-ml
-  HostName 100.76.109.126
+  ForwardAgent yes
+
+Host architect-ml-research
   ForwardAgent yes
 
 Host deric-dev-east
