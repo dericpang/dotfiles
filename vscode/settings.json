@@ -228,5 +228,6 @@
     "**/ml/eval_runs/**": true,
     "**/ml/third_party/**": true
   },
-  "workbench.preferredDarkColorTheme": "Gruvbox Dark Hard"
+  "workbench.preferredDarkColorTheme": "Gruvbox Dark Hard",
+  "chat.disableAIFeatures": true
 }
