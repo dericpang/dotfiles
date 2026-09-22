@@ -11,6 +11,10 @@ zstyle ':completion:*' list-colors ${(s.:.)LSCOLORS}
 export PATH=/usr/local/cuda/bin:$HOME/bin:$PATH
 export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 
+# lean
+export ELAN_HOME="$HOME/.elan"
+export PATH="$HOME/.local/bin:$ELAN_HOME/bin:$PATH"
+
 eval "$(/home/deric/.local/bin/mise activate zsh)"
 
 # bun completions
