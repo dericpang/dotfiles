@@ -1,6 +1,6 @@
 pwd := $(shell pwd -LP)
 
-.PHONY: macos ubuntu vim nvim git ssh ssh-config graphite shared vscode cursor
+.PHONY: macos ubuntu vim nvim git ssh ssh-config graphite shared vscode cursor test-ssh-agent
 
 macos: shared vscode cursor ssh-config
 	@ln -nfs "${pwd}/alacritty" "$(HOME)/.config/alacritty"
@@ -56,3 +56,6 @@ shared: vim nvim git graphite
 	@ln -nfs "${pwd}/bin" "$(HOME)/bin"
 	@ln -nfs "${pwd}/tmux.conf" "$(HOME)/.tmux.conf"
 	@if [ ! -d "$(HOME)/.config/ranger" ]; then mkdir -p "$(HOME)/.config/ranger"; fi && ln -nfs "${pwd}/rc.config" "$(HOME)/.config/ranger/rc.conf"
+
+test-ssh-agent:
+	PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -v
