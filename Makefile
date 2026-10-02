@@ -35,6 +35,7 @@ ssh:
 	@mkdir -p "$(HOME)/.ssh"
 	@ln -nfs "${pwd}/ssh/jisoo.pub" "$(HOME)/.ssh/jisoo.pub"
 	@ln -nfs "${pwd}/ssh/deric-architect.pub" "$(HOME)/.ssh/deric-architect.pub"
+	@ln -nfs "${pwd}/ssh/rc" "$(HOME)/.ssh/rc"
 
 # macOS only: the config points IdentityAgent at the 1Password agent socket,
 # which doesn't exist on the Linux boxes. Linking it there would override the
