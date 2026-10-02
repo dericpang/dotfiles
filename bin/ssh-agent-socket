@@ -1,0 +1,50 @@
+#!/usr/bin/env python3
+"""Refresh the stable SSH-agent link using a resolved socket target."""
+
+from __future__ import annotations
+
+import os
+from pathlib import Path
+import stat
+import sys
+import tempfile
+
+
+def socket_target(value: str | None) -> Path | None:
+    """Resolve a socket path, rejecting dangling links and symlink cycles."""
+    if not value:
+        return None
+    try:
+        target = Path(value).resolve(strict=True)
+        return target if stat.S_ISSOCK(target.stat().st_mode) else None
+    except (OSError, RuntimeError):
+        return None
+
+
+def refresh_agent_socket(incoming: str | None, stable: Path) -> Path | None:
+    """Preserve a usable agent and update the stable link without introducing aliases."""
+    target = socket_target(incoming)
+    if target is None:
+        return stable if socket_target(str(stable)) is not None else None
+    if stable.exists() and not stable.is_symlink():
+        return target
+    try:
+        stable.parent.mkdir(mode=0o700, parents=True, exist_ok=True)
+        # Resolve first, then replace atomically so readers never see a missing link.
+        with tempfile.TemporaryDirectory(prefix=".agent-link-", dir=stable.parent) as directory:
+            link = Path(directory) / "socket"
+            link.symlink_to(target)
+            link.replace(stable)
+        return stable
+    except OSError as exc:
+        print(f"Could not refresh SSH agent link: {exc}", file=sys.stderr)
+        return target
+
+
+if __name__ == "__main__":
+    selected = refresh_agent_socket(
+        os.environ.get("SSH_AUTH_SOCK"), Path.home() / ".ssh" / "ssh_auth_sock"
+    )
+    if selected is None:
+        raise SystemExit(1)
+    print(selected)
