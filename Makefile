@@ -1,6 +1,6 @@
 pwd := $(shell pwd -LP)
 
-.PHONY: macos ubuntu vim nvim git ssh ssh-config graphite shared vscode cursor test-ssh-agent
+.PHONY: macos ubuntu vim nvim git ssh ssh-config shared vscode cursor
 
 macos: shared vscode cursor ssh-config
 	@ln -nfs "${pwd}/alacritty" "$(HOME)/.config/alacritty"
@@ -33,29 +33,13 @@ git: ssh
 
 ssh:
 	@mkdir -p "$(HOME)/.ssh"
-	@ln -nfs "${pwd}/ssh/jisoo.pub" "$(HOME)/.ssh/jisoo.pub"
-	@ln -nfs "${pwd}/ssh/deric-architect.pub" "$(HOME)/.ssh/deric-architect.pub"
 	@ln -nfs "${pwd}/ssh/rc" "$(HOME)/.ssh/rc"
 
-# macOS only: the config points IdentityAgent at the 1Password agent socket,
-# which doesn't exist on the Linux boxes. Linking it there would override the
-# forwarded SSH_AUTH_SOCK and break agent auth, so this stays out of `ssh`.
+# macOS only: the config uses UseKeychain, which Linux OpenSSH rejects.
 ssh-config: ssh
 	@ln -nfs "${pwd}/ssh/config.macos" "$(HOME)/.ssh/config"
 
-# Scaffolds an alternate Graphite config dir (for the dericpang account). The gt
-# wrapper in zshrc points here when inside ~/dericpang, ~/dotfiles, ~/nullprior.
-# aliases/user_config are shared with the default account; the secret auth token
-# is set separately with: gt auth --token <token>  (run from one of those dirs).
-graphite:
-	@mkdir -p "$(HOME)/.graphite-envs/dericpang/graphite"
-	@[ -f "$(HOME)/.config/graphite/aliases" ] && ln -nfs "$(HOME)/.config/graphite/aliases" "$(HOME)/.graphite-envs/dericpang/graphite/aliases" || true
-	@[ -f "$(HOME)/.config/graphite/user_config" ] && ln -nfs "$(HOME)/.config/graphite/user_config" "$(HOME)/.graphite-envs/dericpang/graphite/user_config" || true
-
-shared: vim nvim git graphite
+shared: vim nvim git
 	@ln -nfs "${pwd}/bin" "$(HOME)/bin"
 	@ln -nfs "${pwd}/tmux.conf" "$(HOME)/.tmux.conf"
 	@if [ ! -d "$(HOME)/.config/ranger" ]; then mkdir -p "$(HOME)/.config/ranger"; fi && ln -nfs "${pwd}/rc.config" "$(HOME)/.config/ranger/rc.conf"
-
-test-ssh-agent:
-	PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests -v

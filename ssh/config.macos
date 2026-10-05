@@ -1,3 +1,7 @@
+Host *
+  AddKeysToAgent yes
+  UseKeychain yes
+
 Host architect-ml
   ForwardAgent yes
 
