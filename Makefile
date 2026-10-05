@@ -1,8 +1,8 @@
 pwd := $(shell pwd -LP)
 
-.PHONY: macos ubuntu vim nvim git ssh ssh-config shared vscode cursor
+.PHONY: macos ubuntu vim nvim git shared vscode cursor
 
-macos: shared vscode cursor ssh-config
+macos: shared vscode cursor
 	@ln -nfs "${pwd}/alacritty" "$(HOME)/.config/alacritty"
 	@ln -nfs "${pwd}/zshrc.macos" "$(HOME)/.zshrc"
 	@ln -nfs "${pwd}/bashrc.macos" "$(HOME)/.bashrc"
@@ -25,19 +25,11 @@ cursor:
 	@ln -nfs "${pwd}/vscode/settings.json" "$(HOME)/Library/Application Support/Cursor/User/settings.json"
 	@ln -nfs "${pwd}/vscode/keybindings.json" "$(HOME)/Library/Application Support/Cursor/User/keybindings.json"
 
-git: ssh
+git:
 	@ln -nfs "${pwd}/gitconfig" "$(HOME)/.gitconfig"
 	@ln -nfs "${pwd}/gitconfig-architect" "$(HOME)/.gitconfig-architect"
 	@ln -nfs "${pwd}/gitconfig-nullprior" "$(HOME)/.gitconfig-nullprior"
 	@ln -nfs "${pwd}/gitconfig-dericpang" "$(HOME)/.gitconfig-dericpang"
-
-ssh:
-	@mkdir -p "$(HOME)/.ssh"
-	@ln -nfs "${pwd}/ssh/rc" "$(HOME)/.ssh/rc"
-
-# macOS only: the config uses UseKeychain, which Linux OpenSSH rejects.
-ssh-config: ssh
-	@ln -nfs "${pwd}/ssh/config.macos" "$(HOME)/.ssh/config"
 
 shared: vim nvim git
 	@ln -nfs "${pwd}/bin" "$(HOME)/bin"

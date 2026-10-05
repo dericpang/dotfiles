@@ -5,14 +5,12 @@ HOSTNAME="$1" # The hostname is passed as the first argument.
 TMUX_SESSION="$2" # The tmux session name is passed as the second argument.
 SSH_OPTS="-oCompression=yes -oCheckHostIP=no -oServerAliveInterval=$ALIVE_INTERVAL"
 
-# Reattaching to an existing tmux session does not source shell startup files.
-# Refresh the remote socket first so existing panes follow the new connection.
-TMUX_CMD='if forwarded_agent_socket=$("$HOME/bin/ssh-agent-socket"); then
-  export SSH_AUTH_SOCK="$forwarded_agent_socket"
-else
-  unset SSH_AUTH_SOCK
-fi
-exec tmux new-session -A -s'
+# Re-point the stable agent socket at this connection's forwarded one before
+# attaching. Reconnecting runs this as a remote command, which never sources
+# ~/.zshrc, and attaching to an existing session spawns no new shell -- so
+# nothing else would refresh the socket for panes that are already running.
+# Single-quoted: $SSH_AUTH_SOCK must expand on the remote, not here.
+TMUX_CMD='[ -S "$SSH_AUTH_SOCK" ] && ln -sf "$SSH_AUTH_SOCK" "$HOME/.ssh/ssh_auth_sock"; exec tmux new-session -A -s'
 
 if [ -z "$HOSTNAME" ] ; then
   echo "Usage: $0 <HOSTNAME> [TMUX_SESSION]"
