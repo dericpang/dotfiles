@@ -56,5 +56,3 @@ fi
 # Function that creates a new tmux session named `main` or attaches to the
 # `main` session if it exists.
 main() { tmux new-session -A -s ${1:-main} }
-
-nvm use default --silent

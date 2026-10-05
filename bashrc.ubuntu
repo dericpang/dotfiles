@@ -145,10 +145,6 @@ alias e="nvim"
 # fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 # >>> hw-tools modules >>>
 # lmod defines the `module` function from /etc/profile.d, which bash only
 # sources for LOGIN shells. Source it explicitly so `module` also exists in
