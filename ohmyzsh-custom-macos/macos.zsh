@@ -10,6 +10,7 @@ zstyle ':completion:*' list-colors ${(s.:.)LSCOLORS}
 
 export PATH=$HOME/bin:$PATH
 eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(/opt/homebrew/bin/mise activate zsh)"
 
 # LM Studio
 export PATH="$PATH:/Users/deric/.lmstudio/bin"
